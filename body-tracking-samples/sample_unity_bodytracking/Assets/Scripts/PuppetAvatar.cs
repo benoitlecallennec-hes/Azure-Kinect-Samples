@@ -88,7 +88,8 @@ public class PuppetAvatar : MonoBehaviour
                 // get the absolute offset
                 Quaternion absOffset = absoluteOffsetMap[(JointId)j];
                 Transform finalJoint = PuppetAnimator.GetBoneTransform(MapKinectJoint((JointId)j));
-                finalJoint.rotation = absOffset * Quaternion.Inverse(absOffset) * KinectDevice.absoluteJointRotations[j] * absOffset;
+                // finalJoint.rotation = absOffset * Quaternion.Inverse(absOffset) * KinectDevice.absoluteJointRotations[j] * absOffset;
+                finalJoint.rotation = KinectDevice.absoluteJointRotations[j] * absOffset;
                 if (j == 0)
                 {
                     finalJoint.localPosition = new Vector3(RootPosition.transform.localPosition.x, RootPosition.transform.localPosition.y + OffsetY, RootPosition.transform.localPosition.z - OffsetZ);
@@ -96,5 +97,4 @@ public class PuppetAvatar : MonoBehaviour
             }
         }
     }
-
 }
